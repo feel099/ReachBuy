@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ReachbuyConfig(AppConfig):
+class CoreConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'reachbuy'
+    name = 'apps.core'
