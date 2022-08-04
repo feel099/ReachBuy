@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+    {% block content %}
+        <div class="container">
+            <h1>Создание нового отзыва</h1>
+            <p>Выберите продукт или <a href="{% url 'createProduct' %}">добавьте новый</a>:</p>
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-primary">Отправить</button>
+            </form>
+        </div>
+        <br>
+    {% endblock %}

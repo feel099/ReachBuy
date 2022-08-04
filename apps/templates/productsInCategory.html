@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+        <div class="container">
+            <h1>{{ category.name }}</h1>
+                <table class="table table-striped">
+                <tbody>
+                    {% if products_in_category %}
+                        {% for product in products_in_category %}
+                          <tr>
+                          {% if product.image %}
+                              <td><img src="{{ product.image.url }}" alt="" width="250px">  </td>
+                          {% else %}
+                              <td></td>
+                          {% endif %}
+                              <td><a href="#"><h5>{{ product.name }}</h5></a>
+                                  <br>
+                              {{ product.description }}</td>
+                          </tr>
+                </tbody>
+
+                        {% endfor %}
+                    {% else %}
+                      <p>No products</p>
+                    {% endif %}
+            </table>
+        </div>
+    {% endblock %}

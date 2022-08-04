@@ -1,6 +1,10 @@
+
 h1 {
     font-size: larger;
     font-style: italic;
     font-family: Georgia;
     color: darkolivegreen;
+}
+img{
+    max-width: 350px;
 }
