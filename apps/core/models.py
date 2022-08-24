@@ -34,7 +34,7 @@ class Product(models.Model):
         verbose_name_plural = 'Продукты'
 
     name = models.CharField(verbose_name='Название продукта', max_length=200)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to='media', null=True, blank=True)
     description = models.TextField(verbose_name='Описание продукта')
     category = models.ForeignKey(
         Category, on_delete=models.SET('DELETED'),
@@ -66,4 +66,4 @@ class Review(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('reachbuy')
+        return reverse('base')

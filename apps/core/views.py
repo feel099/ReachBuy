@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from apps.core.models import Category, Product, Review
@@ -38,6 +38,18 @@ def products_in_category(request, pk):
         'categories': Category.objects.all(),
     }
     return render(request, 'productsInCategory.html', context)
+
+
+def product_page(request, pk):
+    product_detail = Product.objects.get(pk=pk)
+    review_set = Review.objects.filter(product=product_detail)
+    context = {
+        'product_page': Product.objects.get(pk=pk),
+        'review_for_products': review_set.values(),
+        'categories': Category.objects.all(),
+    }
+
+    return render(request, 'product_page.html', context)
 
 
 class CreateProductView(LoginRequiredMixin, CreateView):

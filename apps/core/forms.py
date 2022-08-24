@@ -5,17 +5,17 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class UserRegisterForm(UserCreationForm):
-    username = forms.EmailField(
-        widget=forms.EmailInput(
-            attrs={
-                "placeholder": "Email -- ",
-                "class": ""
-            }
-        ))
+    # username = forms.EmailField(
+    #     widget=forms.EmailInput(
+    #         attrs={
+    #             "placeholder": "Email -- ",
+    #             "class": ""
+    #         }
+    #     ))
 
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2']
+        fields = ['email', 'password1', 'password2', 'first_name', 'last_name']
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -24,6 +24,11 @@ class UserRegisterForm(UserCreationForm):
             raise forms.ValidationError("Этот email уже занят")
 
         return email
+
+
+class LoginForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
 
 
 class ProductForm(ModelForm):

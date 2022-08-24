@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+        <div class="container">
+            <h1>{{ product_page.name }}</h1>
+            {% if product_page.image %}
+            <img src="{{ product_page.image.url }}" alt="Картинка">
+            {% endif %}
+            <p>{{ product_page.description }}</p>
+            <br>
+            <p>
+
+              <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Оставить отзыв на "{{ product_page.name }}
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+               <form method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <button class="btn btn-primary">Отправить</button>
+            </form>
+              </div>
+            </div>
+            <br>
+            <p>Отзывы на "{{ product_page.name }}":
+            <table class="table table-striped">
+                <tbody>
+                    {% if review_for_products %}
+                        {% for v in review_for_products %}
+                            <tr>
+                              <td> {{ v.title }}  </td>
+                              <td> {{ v.description }} </td>
+                              <td> {{ v.published }} </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <td>На этот продукт пока нет отзывов, ваш отзыв может стать первым)</td>
+                    {% endif %}
+            </table>
+        </div>
+    {% endblock %}
